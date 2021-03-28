@@ -22,9 +22,12 @@ public class Main {
         ArrayImpl array = arr.clone();
         array.add("I am god");
         arr.add("No you are not");
+        arr.removeAt(-1);
         System.out.println(array.toString());
         System.out.println(arr.toString());
         System.out.println(arr.isEmpty());
+        arr.clear();
+        System.out.println(arr.toString());
 
     }
 }

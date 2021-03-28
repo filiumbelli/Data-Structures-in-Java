@@ -8,4 +8,5 @@ public interface IArray<T> {
     boolean isEmpty();
     int size();
     int indexOf(T t);
+    void clear();
 }

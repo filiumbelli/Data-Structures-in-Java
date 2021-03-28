@@ -4,6 +4,9 @@ public class ArrayImpl<T extends Object> implements IArray {
     private int currentSize = 0;
 
     public ArrayImpl(int num) {
+        if (num < 0) {
+            throw new IllegalArgumentException();
+        }
         len = num;
         array = new Object[len];
 
@@ -13,7 +16,21 @@ public class ArrayImpl<T extends Object> implements IArray {
         return currentSize;
     }
 
-
+    public void removeAt(int index){
+        if(index<0){
+            index += currentSize;
+            if(currentSize<0){
+                throw new IndexOutOfBoundsException();
+            }
+        }
+        array[index] =null;
+        for(int i = index ; i<currentSize-1;i++){
+            array[i] = array[i+1];
+        }
+        currentSize--;
+//        Object o = get(index);
+//        remove(o);
+    }
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
@@ -53,6 +70,14 @@ public class ArrayImpl<T extends Object> implements IArray {
     }
 
     @Override
+    public void clear() {
+        for (int i = 0; i < currentSize; i++) {
+            array[i] = null;
+        }
+        currentSize = 0;
+    }
+
+    @Override
     public void remove(Object o) {
 
         try {
@@ -65,10 +90,10 @@ public class ArrayImpl<T extends Object> implements IArray {
             }
 //            1,3,6,16,17,7,8
             for (int i = breakPoint; breakPoint < currentSize; i++) {
-                if(i == currentSize-1){
+                if (i == currentSize - 1) {
                     break;
                 }
-                array[i] = array[i+1];
+                array[i] = array[i + 1];
             }
             currentSize--;
         } catch (Exception e) {
@@ -90,10 +115,11 @@ public class ArrayImpl<T extends Object> implements IArray {
             return false;
         }
     }
+
     @Override
     public ArrayImpl clone() {
-       ArrayImpl<T> tempArray = new ArrayImpl<T>();
-        for(int i = 0; i<currentSize;i++){
+        ArrayImpl<T> tempArray = new ArrayImpl<T>();
+        for (int i = 0; i < currentSize; i++) {
             tempArray.add(array[i]);
         }
         return tempArray;
@@ -106,7 +132,7 @@ public class ArrayImpl<T extends Object> implements IArray {
 
     @Override
     public boolean isEmpty() {
-        return currentSize>0;
+        return currentSize > 0;
     }
 
     @Override
@@ -116,8 +142,8 @@ public class ArrayImpl<T extends Object> implements IArray {
 
     @Override
     public int indexOf(Object o) {
-        for(int i=0; i<currentSize;i++){
-            if(o == array[i]){
+        for (int i = 0; i < currentSize; i++) {
+            if (o == array[i]) {
                 return i;
             }
         }
