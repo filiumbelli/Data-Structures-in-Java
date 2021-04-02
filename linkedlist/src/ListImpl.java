@@ -5,9 +5,10 @@ public class ListImpl<T extends Object> implements IList {
     private Node head;
     Node node = new Node();
 
-    public int size(){
+    public int size() {
         return len;
     }
+
     class Node<T extends Node> {
         private T next;
         private T prev;
@@ -50,7 +51,7 @@ public class ListImpl<T extends Object> implements IList {
 
     @Override
     public void add(Object x) {
-        if (node == null || node.getValue() == null  ) {
+        if (node == null || node.getValue() == null) {
             node = new Node();
             node.setValue(x);
             node.setNext(null);
@@ -89,7 +90,7 @@ public class ListImpl<T extends Object> implements IList {
         StringBuilder sb = new StringBuilder();
         sb.append("[");
         Node tempNode = node;
-        if(node == null){
+        if (node == null) {
             return null;
         }
         while (tempNode.getNext() != null) {
@@ -186,6 +187,28 @@ public class ListImpl<T extends Object> implements IList {
 
     @Override
     public void add(int index, Object x) {
+        Node temp = node;
+        if (index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (index == 0) {
+            addFirst(x);
+            return;
+        }
+        if (index == len - 1) {
+            addLast(x);
+            return;
+        }
+        int i = 0;
+        while (i != index - 1) {
+            // 1 3<-->5 6  ->2 7     1 3 5 -> 7 -> 6
+            i++;
+            temp = temp.getNext();
+        }
+        Node node = new Node().setValue(x).setNext(temp.getNext()).setPrev(temp);
+        temp.setNext(node);
+        len++;
+
 
     }
 
@@ -210,9 +233,15 @@ public class ListImpl<T extends Object> implements IList {
 
     @Override
     public void addFirst(Object x) {
-        Node node = new Node().setValue(x).setNext(head).setPrev(null);
-        head.setPrev(node);
-        head = node;
+        if (len == 0) {
+            head = tail = new Node().setValue(x).setNext(null).setPrev(null);
+        } else {
+            Node n = new Node().setValue(x).setNext(head).setPrev(null);
+            head.setPrev(n);
+            head = head.getPrev();
+            node = head;
+        }
+        len++;
     }
 
     @Override

@@ -17,6 +17,8 @@ public class Test {
         l.remove(0);
         l.add(25);
         l.add(33);
+        l.add(2,55);
+        l.addFirst(55);
         System.out.println(l.size());
         System.out.println(l);
 
