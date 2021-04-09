@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Data Structures with Java.iml" filepath="$PROJECT_DIR$/.idea/Data Structures with Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UnionFind/UnionFind.iml" filepath="$PROJECT_DIR$/UnionFind/UnionFind.iml" />
       <module fileurl="file://$PROJECT_DIR$/array/array.iml" filepath="$PROJECT_DIR$/array/array.iml" />
       <module fileurl="file://$PROJECT_DIR$/linkedlist/linkedlist.iml" filepath="$PROJECT_DIR$/linkedlist/linkedlist.iml" />
       <module fileurl="file://$PROJECT_DIR$/priorityqueue/priorityqueue.iml" filepath="$PROJECT_DIR$/priorityqueue/priorityqueue.iml" />
